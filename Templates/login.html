@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% set body_class = "royal-theme" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Login</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action="/login" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <div class="password-wrapper">
+            <input type="password" id="login-password" name="password" required>
+            <i class="fa-solid fa-eye toggle-eye" onclick="togglePassword('login-password', this)"></i>
+        </div>
+
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p style="margin-top: 15px; text-align: center;">
+        Don't have an account? <a href="/signup">Sign Up</a>
+    </p>
+</div>
+
+<script>
+    function togglePassword(fieldId, icon) {
+        const field = document.getElementById(fieldId);
+        if (field.type === "password") {
+            field.type = "text";
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            field.type = "password";
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    }
+</script>
+
+<style>
+    .password-wrapper {
+        position: relative;
+    }
+
+    .password-wrapper input {
+        padding-right: 40px;
+    }
+
+    .toggle-eye {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: black;
+    }
+</style>
+
+{% endblock %}

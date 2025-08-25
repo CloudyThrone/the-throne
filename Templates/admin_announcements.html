@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% set body_class = "bg-float" %}
+
+{% block content %}
+
+    <section class="content">
+        <h2>Send Announcement to Users</h2>
+        <form method="POST" class="announcement-form">
+            <input type="text" name="title" placeholder="Announcement Title (optional)"><br><br>
+            <textarea name="message" placeholder="Type your announcement..." required></textarea><br><br>
+            <button type="submit">Send Announcement</button>
+        </form>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-success">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <h3>All Announcements</h3>
+        {% for announcement in announcements %}
+            <div class="announcement-box">
+                <strong>{{ announcement.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</strong><br>
+                {% if announcement.title %}
+                    <em>{{ announcement.title }}</em><br>
+                {% endif %}
+                {{ announcement.message }}<br>
+                <a class="delete-link" href="{{ url_for('admin_announcements', delete=announcement.id) }}"
+                   onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
+            </div>
+        {% else %}
+            <p>No announcements yet.</p>
+        {% endfor %}
+    </section>
+</div>
+{% endblock %}

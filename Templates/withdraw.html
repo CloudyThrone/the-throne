@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% set body_class = "bg-float" %}
+
+{% block content %}
+<style>
+    .main-content {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .sidebar {
+        width: 220px;
+        background-color: #3D2C8D;
+        color: white;
+        padding: 30px 20px;
+        border-top-right-radius: 40px;
+        border-bottom-right-radius: 40px;
+    }
+
+    .sidebar h3 {
+        color: #F9F6EF;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .sidebar a {
+        display: block;
+        color: #F9F6EF;
+        text-decoration: none;
+        margin: 18px 0;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .sidebar a:hover {
+        color: #C28840;
+    }
+
+    .page-area {
+        flex: 1;
+        padding: 30px;
+    }
+
+    /* Reuse your existing styles here */
+    .withdraw-container {
+        max-width: 700px;
+        margin: 0 auto;
+        background-color: #201d20;
+        padding: 30px;
+        border-radius: 10px 60px 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        color: #2F2F2F;
+    }
+
+    .withdraw-container h2 {
+        color: #3D2C8D;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-box label {
+        font-weight: bold;
+        display: block;
+        margin-top: 15px;
+        color: #3D2C8D;
+    }
+
+    .form-box input {
+        width: 100%;
+        padding: 12px;
+        margin-top: 8px;
+        border: 2px solid #C28840;
+        border-radius: 10px;
+        font-size: 1em;
+    }
+
+    .form-box button {
+        margin-top: 20px;
+        padding: 12px 24px;
+        background-color: #C28840;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .form-box button:hover {
+        background-color: #a06a2f;
+    }
+
+    .flash {
+        color: red;
+        margin-top: 10px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .history-section {
+        margin-top: 50px;
+    }
+
+    .history-section h3 {
+        text-align: center;
+        color: #3D2C8D;
+        margin-bottom: 20px;
+    }
+
+    .history-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .history-table th, .history-table td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: center;
+    }
+
+    .history-table th {
+        background-color: #3D2C8D;
+        color: white;
+    }
+
+    .history-table td {
+        color: #2F2F2F;
+    }
+</style>
+
+<div class="main-content">
+    <aside class="sidebar">
+        <h3>🤑</h3>
+        <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="/dashboard"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="/rewards"><i class="fa-solid fa-medal"></i> Rewards</a>
+        <a href="/withdraw"><i class="fa-solid fa-money-bill-wave"></i> Withdraw</a>
+    </aside>
+
+    <div class="page-area">
+        <div class="withdraw-container">
+            <h2>Withdraw Funds</h2>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <p class="flash">{{ message }}</p>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <form method="POST" class="form-box">
+                <label for="phone">Phone Number:</label>
+                <input type="text" name="phone" id="phone" required>
+
+                <label for="amount">Amount (Min: Ksh 150):</label>
+                <input type="number" name="amount" id="amount" required min="150">
+
+                <button type="submit">Request Withdrawal</button>
+            </form>
+        </div>
+
+        <div class="history-section">
+            <h3>Withdrawal History</h3>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Amount (Ksh)</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for w in withdrawals %}
+                    <tr>
+                        <td>{{ w.date }}</td>
+                        <td>{{ w.time }}</td>
+                        <td>{{ w.amount }}</td>
+                        <td>{{ w.phone }}</td>
+                        <td>{{ w.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

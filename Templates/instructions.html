@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% set body_class = "bg-float" %}
+
+{% block content %}
+
+<div class="main-content">
+    <aside class="sidebar">
+        <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+    </aside>
+<style>
+    .instruction-container {
+        background-color: rgba(249, 246, 239, 0.95); /* Pearl White with slight transparency */
+        max-width: 700px;
+        margin: 50px auto;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+        color: #2F2F2F; /* Dark Slate */
+    }
+
+    .instruction-container h2 {
+        color: #3D2C8D; /* Royal Purple */
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .instruction-container ol {
+        margin: 20px 0;
+        padding-left: 20px;
+    }
+
+    .instruction-container li {
+        margin-bottom: 10px;
+    }
+
+    .btn-register {
+        display: block;
+        background-color: #C28840; /* Antique Gold */
+        color: white;
+        text-align: center;
+        padding: 12px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 25px auto;
+        width: 60%;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    }
+
+    .btn-register:hover {
+        background-color: #a06a2f;
+    }
+
+    .instruction-container a {
+        color: #3D2C8D;
+        font-weight: bold;
+    }
+
+    .instruction-container a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="instruction-container">
+    <h2>How to Register with M-Pesa</h2>
+    <p>Follow these steps to register your account:</p>
+
+    <ol>
+        <li>Open your <strong>M-Pesa</strong> menu.</li>
+        <li>Select <strong>Lipa na M-Pesa</strong>.</li>
+        <li>Choose <strong>Buy Goods and Services</strong>.</li>
+        <li>Enter the Till Number: <strong id="till-number">6959497</strong>.</li>
+        <li>Enter the amount: <strong>KES 100</strong>.</li>
+        <li>Complete the transaction and save the confirmation message.</li>
+    </ol>
+
+    <!-- Copy Button -->
+    <button class="btn-register" onclick="copyTillNumber()">Copy Till Number</button>
+
+    <p>After a successful payment, please share the M-Pesa confirmation message and your username<br>
+        with the company's email at <strong>skyqash@gmail.com</strong>, our able mentors,<br>
+        or on any of our official platforms in await for your account to be approved and also for faster approval, Thank you.<br><br>
+        In case of anything, contact us at <strong>skyqash@gmail.com</strong>.</p>
+
+    <a href="{{ url_for('signup') }}" class="btn-register">Proceed to Signup</a>
+
+    <p style="text-align: center;">Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+</div>
+
+<script>
+    function copyTillNumber() {
+        const tillNumber = document.getElementById("till-number").innerText;
+        navigator.clipboard.writeText(tillNumber).then(() => {
+            alert("Till Number copied to clipboard!");
+        }).catch(err => {
+            alert("Failed to copy: " + err);
+        });
+    }
+</script>
+{% endblock %}

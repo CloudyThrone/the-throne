@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Throne</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Favicon and App Icons -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon_io(1)/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ url_for('static', filename='favicon/android-chrome-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ url_for('static', filename='favicon/android-chrome-512x512.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon/apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='favicon_io(1)/site.webmanifest') }}">
+</head>
+<body class="{{ body_class | default('') }}">
+    <header>
+    <div class="header-top" style="display: flex; align-items: center; gap: 15px;">
+        <a href="/">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="The Throne Logo" style="height: 60px;">
+        </a>
+        <h1>The Throne</h1>
+    </div>
+
+    {% if request.endpoint not in ['login', 'signup', 'instruction', 'instructions', 'withdraw', 'dashboard','rewards'] %}
+    <nav>
+        <ul style="display: flex; gap: 15px; list-style: none; padding: 0;">
+            <li><a href="/">Home</a></li>
+            {% if session.get('role') == 'admin' %}
+                <li><a href="/admin_dashboard">Admin Dashboard</a></li>
+            {% else %}
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/rewards">rewards</a></li><li>
+                <a href="/withdraw">Withdraw</a></li>
+            {% endif %}
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    {% endif %}
+</header>
+
+
+    <!-- ✅ Flash messages block -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div style="position: fixed; top: 10px; right: 10px; z-index: 9999;">
+        {% for category, message in messages %}
+          <div class="flash-message {{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% endwith %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; Need assistance🤗contact: thesuperiorthrone@gmail.com.</p>
+        <p>&copy; 2025 The Throne. All Rights Reserved.</p>
+    </footer>
+
+    <!-- ✅ Auto-dismiss flash messages after 4 seconds -->
+    <script>
+      setTimeout(function() {
+        let alerts = document.querySelectorAll('[style*="position: fixed"]');
+        alerts.forEach(alert => alert.remove());
+      }, 4000);
+    </script>
+</body>
+</html>

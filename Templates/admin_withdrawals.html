@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% set body_class = "bg-float" %}
+
+{% block content %}
+<style>
+    .container h2 {
+        text-align: center;
+        color: #3D2C8D;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: center;
+        color: #2F2F2F;
+    }
+
+    th {
+        background-color: #3D2C8D;
+        color: #fff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f6ef;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .flash {
+        color: red;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .pending {
+        color: #C28840;
+        font-weight: bold;
+    }
+
+    .approved {
+        color: green;
+        font-weight: bold;
+    }
+
+    .denied {
+        color: red;
+        font-weight: bold;
+    }
+
+    button {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9em;
+        margin: 2px;
+    }
+
+    button:hover {
+        opacity: 0.9;
+    }
+</style>
+
+<div class="container" style="padding: 20px;">
+    <h2>Withdrawal Requests</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Phone</th>
+                <th>Amount (KES)</th>
+                <th>Balance at Request (KES)</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for w in withdrawals %}
+            <tr>
+                <td>{{ w.id }}</td>
+                <td>{{ w.username }}</td>
+                <td>{{ w.phone }}</td>
+                <td>{{ w.amount }}</td>
+                <td>{{ w.balance }}</td>
+                <td>{{ w.date }}</td>
+                <td>{{ w.time }}</td>
+                <td class="{{ w.status }}">{{ w.status|capitalize }}</td>
+                <td>
+                    {% if w.status == 'pending' %}
+                        <a href="{{ url_for('approve_withdrawal', withdrawal_id=w.id) }}">
+                            <button style="background-color: #4CAF50; color: white;">Approve</button>
+                        </a>
+                        <a href="{{ url_for('deny_withdrawal', withdrawal_id=w.id) }}">
+                            <button style="background-color: #f44336; color: white;">Deny</button>
+                        </a>
+                    {% else %}
+                        <em>No action</em>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

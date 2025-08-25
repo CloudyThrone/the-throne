@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% set body_class = "bg-float" %}
+
+{% block content %}
+
+<div class="main-content">
+    <aside class="sidebar">
+        <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+    </aside>
+
+<style>
+    .instruction-container {
+        background-color: rgba(249, 246, 239, 0.95); /* Pearl White */
+        max-width: 700px;
+        margin: 50px auto;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+        color: #2F2F2F; /* Dark Slate */
+    }
+
+    .instruction-container h2 {
+        color: #3D2C8D; /* Royal Purple */
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .instruction-container ol {
+        margin: 20px 0;
+        padding-left: 20px;
+    }
+
+    .instruction-container li {
+        margin-bottom: 10px;
+    }
+
+    .till-number {
+        font-size: 1.6em;
+        font-weight: bold;
+        color: #C28840; /* Antique Gold */
+    }
+
+    .thank-you {
+        background-color: #3D2C8D;
+        color: #F9F6EF;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    .note {
+        margin-top: 25px;
+        font-weight: bold;
+        color: #2F2F2F;
+        background-color: #f3eadd;
+        padding: 15px;
+        border-left: 5px solid #C28840;
+        border-radius: 10px;
+    }
+
+    .btn-register {
+        display: block;
+        background-color: #C28840;
+        color: white;
+        text-align: center;
+        padding: 12px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 25px auto;
+        width: 60%;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    }
+
+    .btn-register:hover {
+        background-color: #a06a2f;
+    }
+
+    .instruction-container a {
+        color: #3D2C8D;
+        font-weight: bold;
+    }
+
+    .instruction-container a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="instruction-container">
+
+    <div class="thank-you">
+        Thank you for signing up!<br>
+        Your account is currently under review by our admin team.<br>
+        You will gain full access to the platform once your request is approved after you have completed the easy registration process.
+    </div>
+
+    <h2>How to Register with M-Pesa</h2>
+    <p>Follow these steps to complete your registration:</p>
+
+    <ol>
+        <li>Open your <strong>M-Pesa</strong> menu.</li>
+        <li>Select <strong>Lipa na M-Pesa</strong>.</li>
+        <li>Choose <strong>Buy Goods and Services</strong>.</li>
+        <li>Enter the Till Number: <span class="till-number" id="till-number">6959497</span></li>
+        <li>Enter the amount: <strong>KES 100</strong>.</li>
+        <li>Complete the transaction and save the confirmation message.</li>
+    </ol>
+
+    <!-- Copy Button -->
+    <button class="btn-register" onclick="copyTillNumber()">Copy Till Number</button>
+
+    <div class="note">
+        After a successful payment, please share the M-Pesa confirmation message and your username<br>
+        with the company's email at <strong>skyqash@gmail.com</strong>, our able mentors,<br>
+        or on any of our official platforms in await for your account to be approved and also for faster approval, Thank you.<br><br>
+        In case of anything, contact us at <strong>skyqash@gmail.com</strong>.
+    </div>
+
+    <p style="text-align: center; margin-top: 20px;">Completed registration? <a href="{{ url_for('login') }}">Login here</a></p>
+</div>
+
+<script>
+    function copyTillNumber() {
+        const tillNumber = document.getElementById("till-number").innerText;
+        navigator.clipboard.writeText(tillNumber).then(() => {
+            alert("Till Number copied to clipboard!");
+        }).catch(err => {
+            alert("Failed to copy: " + err);
+        });
+    }
+</script>
+{% endblock %}

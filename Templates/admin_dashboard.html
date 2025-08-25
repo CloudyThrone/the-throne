@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% set body_class = "bg-float" %}
+
+{% block content %}
+<style>
+    .admin-dashboard {
+        max-width: 600px;
+        margin: 80px auto;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(15px);
+        text-align: center;
+        color: #fff;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .admin-dashboard h2 {
+        font-size: 32px;
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: #f8f9fa;
+    }
+
+    .admin-dashboard p {
+        font-size: 16px;
+        margin-bottom: 30px;
+        color: #ccc;
+    }
+
+    .admin-link {
+        display: block;
+        padding: 14px 20px;
+        margin: 15px auto;
+        width: 80%;
+        font-size: 18px;
+        font-weight: 500;
+        color: #fff;
+        background: linear-gradient(to right, #8400f0, #00dfd8);
+        text-decoration: none;
+        border-radius: 12px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 6px 20px rgba(0, 223, 216, 0.3);
+    }
+
+    .admin-link:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 25px rgba(0, 223, 216, 0.5);
+    }
+</style>
+
+<div class="admin-dashboard">
+    <h2>Welcome to the KING'S Dashboard 😌</h2>
+    <h2>✨ REBUILD IT</h2>
+    <p>Use the tools below to manage operations:</p>
+
+    <a href="{{ url_for('admin_user_requests') }}" class="admin-link">🧾 Pending User Requests</a>
+    <a href="{{ url_for('admin_withdrawals') }}" class="admin-link">💰 Withdrawal Requests</a>
+    <a href="{{ url_for('admin_announcements') }}" class="admin-link">📢 Send Announcement</a>
+</div>
+{% endblock %}

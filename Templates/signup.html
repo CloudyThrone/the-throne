@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% set body_class = "royal-theme" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Sign Up</h2>
+
+    {% if inviter %}
+        <p style="color: green; text-align: center;">You were invited by <strong>{{ inviter }}</strong>.</p>
+    {% endif %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action="/signup" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required pattern="^(07|01)\d{8}$" placeholder="07XX XXX XXX or 01XX XXX XXX">
+
+        <label for="password">Password:</label>
+        <div class="password-wrapper">
+            <input type="password" id="signup-password" name="password" required>
+            <i class="fa-solid fa-eye toggle-eye" onclick="togglePassword('signup-password', this)"></i>
+        </div>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+
+    <p style="margin-top: 15px; text-align: center;">
+        Already have an account? <a href="/login">Login</a>
+    </p>
+</div>
+
+<script>
+    function togglePassword(fieldId, icon) {
+        const field = document.getElementById(fieldId);
+        if (field.type === "password") {
+            field.type = "text";
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            field.type = "password";
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    }
+</script>
+
+<style>
+    .password-wrapper {
+        position: relative;
+    }
+
+    .password-wrapper input {
+        padding-right: 40px;
+    }
+
+    .toggle-eye {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: black;
+    }
+
+    form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+    form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+</style>
+
+{% endblock %}

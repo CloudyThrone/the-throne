@@ -1,0 +1,248 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Floating background image only on selected pages */
+body.bg-float {
+    background: radial-gradient(circle at top left, #3D2C8D 20%, #2F2F2F 80%);
+    background-attachment: fixed;
+    background-size: 105% auto;
+    color: #F9F6EF;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body.bg-float::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../images/royal_background.jpg') no-repeat center center;
+    background-size: cover;
+    opacity: 0.3;  /* Adjust visibility */
+    filter: brightness(1.4);
+    z-index: -1;
+    pointer-events: none;
+    border: 5px solid rgb(162, 0, 255);
+}
+
+
+/* Make buttons stand out */
+button, .btn {
+    background-color: #C28840; /* Antique Gold */
+    color: #F9F6EF; /* Pearl White */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: #a87030;
+    transform: scale(1.05);
+}
+
+
+/* Container overlay to enhance readability of content */
+.container, .content, .card, .form-box {
+    background-color: rgba(0, 0, 0, 0.6); /* dark overlay for text readability */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(194, 136, 64, 0.5); /* antique gold glow */
+}
+
+/* Header Styling */
+header {
+    background-color: rgba(47, 12, 77, 0);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 3px solid #C28840;
+}
+
+header h1 {
+    color: #F9F6EF;
+    font-size: 2.2rem;
+}
+
+/* Navigation Styling */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 15px;
+}
+
+nav a {
+    color: #C28840;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #F9F6EF;
+}
+
+/* Main Content */
+main {
+    padding: 30px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Flash Messages */
+.flash-message {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.flash-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.flash-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+/* Forms */
+form input[type="text"],
+form input[type="email"],
+form input[type="phone"],
+form input[type="password"],
+form input[type="number"],
+form select {
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+    border: 1px solid #C28840;
+    border-radius: 6px;
+    background-color: #F9F6EF;
+    color: #2F2F2F;
+}
+
+/* Footer */
+footer {
+    background-color: rgba(47, 12, 77, 0.671);
+    text-align: center;
+    padding: 20px;
+    color: #C28840;
+    border-top: 2px solid #3D2C8D;
+    margin-top: 40px;
+}
+
+/* Custom Card or Section Styling */
+.card {
+    background-color: rgba(249, 246, 239, 0.1);
+    border: 1px solid #C28840;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Links inside content */
+a {
+    color: #C28840;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #F9F6EF;
+    text-decoration: none;
+}
+
+.flash-message {
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    animation: fadeIn 0.5s ease-in;
+}
+
+.flash-message.success {
+    background-color: #C28840;
+    color: #fff;
+}
+
+.flash-message.error {
+    background-color: #D9534F;
+    color: #fff;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; right: -50px; }
+    to { opacity: 1; right: 10px; }
+}
+
+body.royal-theme {
+    background: radial-gradient(circle at top left, #3D2C8D 20%, #2F2F2F 80%);
+    background-size: cover;
+    font-family: 'Segoe UI', sans-serif;
+    color: #F9F6EF; /* Pearl White text */
+}
+
+/* Style only form container on themed pages */
+body.royal-theme .form-container {
+    background-color: rgba(47, 47, 47, 0.88); /* dark slate glassy effect */
+    padding: 30px;
+    max-width: 420px;
+    margin: 80px auto;
+    border-radius: 10px 60px 30px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+}
+
+/* Input styling just for royal-theme forms */
+body.royal-theme input[type="text"],
+body.royal-theme input[type="email"],
+body.royal-theme input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    background: #F9F6EF;
+    color: #0e0d0c;
+}
+
+/* Button styling */
+body.royal-theme button {
+    width: 100%;
+    padding: 10px;
+    background-color: #C28840;
+    color: #2F2F2F;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+body.royal-theme button:hover {
+    background-color: #a06a2f;
+}

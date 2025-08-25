@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% set body_class = "bg-float" %}
+
+{% block content %}
+<style>
+    .referral-info {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin: 30px 0;
+        flex-wrap: wrap;
+    }
+
+    .info-block {
+        background-color: rgb(255, 255, 255); 
+        color: #3D2C8D; /* Royal Purple */
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 150px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-weight: bold;
+    }
+
+    .site-info {
+        padding: 20px;
+        background-color: rgba(47, 12, 77, 0.671);
+        border-radius: 12px;
+        margin: 30px auto;
+        max-width: 700px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        color: #ffffff; 
+    }
+
+    .invite-link-box {
+        margin: 40px auto;
+        max-width: 600px;
+        text-align: center;
+        color: #070707;
+    }
+
+    .invite-link-box input {
+        padding: 12px;
+        font-size: 1em;
+        width: 100%;
+        max-width: 500px;
+        border: 2px solid #3D2C8D;
+        border-radius: 10px;
+        background-color: #fff;
+        color: #3D2C8D;
+        font-weight: bold;
+    }
+
+    .invite-link-box button {
+        margin-top: 15px;
+        padding: 10px 25px;
+        font-size: 1em;
+        background-color: #C28840; /* Antique Gold */
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .invite-link-box button:hover {
+        background-color: #a06a2f;
+    }
+
+    #copyMessage {
+        color: green;
+        display: none;
+    }
+
+    .dashboard-container {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .sidebar {
+        background-color: #3D2C8D; /* Royal Purple */
+        color: white;
+        width: 220px;
+        padding: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+        font-weight: bold;
+    }
+
+    .sidebar h2 {
+        font-size: 1.4em;
+        margin-bottom: 30px;
+        color: #C28840;
+        text-align: center;
+    }
+
+    .sidebar a {
+        display: block;
+        margin: 15px 0;
+        color: #F9F6EF;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 8px;
+        transition: background 0.3s ease;
+    }
+
+    .sidebar a:hover {
+        background-color: #2F2F2F;
+        color: #C28840;
+    }
+
+    .dashboard-main {
+        flex: 1;
+        padding: 30px;
+    }
+
+    .info-block:hover {
+        transform: scale(1.03);
+        transition: transform 0.3s ease;
+    }
+
+    .info-block h3::before {
+        content: "★ ";
+        color: #C28840;
+    }
+
+    @media (max-width: 768px) {
+        .dashboard-container {
+            flex-direction: column;
+        }
+
+        .sidebar {
+            width: 100%;
+            border-radius: 0;
+            text-align: center;
+        }
+    }
+</style>
+
+
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>👑</h2>
+        <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="/dashboard"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="/rewards"><i class="fa-solid fa-medal"></i> Rewards</a>
+        <a href="/withdraw"><i class="fa-solid fa-money-bill-wave"></i> Withdraw</a>
+        <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </div>
+
+    <!-- Main Dashboard Content -->
+    <div class="dashboard-main">
+
+        <!-- KEEP your current code below here (unchanged) -->
+        <section class="referral-info">
+            <div class="info-block">
+                <h3>Profits</h3>
+                <p>Ksh {{ profits }}</p>
+            </div>
+            <div class="info-block">
+                <h3>Invitees</h3>
+                <p>{{ invitees }}</p>
+            </div>
+            <div class="info-block">
+                <h3>Balance</h3>
+                <p>Ksh {{ balance }}</p>
+            </div>
+        </section>
+
+        <section class="site-info">
+            <h3>"Welcome to your throne 🏰 your majesty🙇‍♂"</h3>
+<p>
+At <strong>The Throne</strong>, earning isn’t just a feature — it’s a way to rise. As a proudly Kenyan-based platform, we exist to uplift individuals through a premium, referral-powered experience designed for lasting impact. Our mission is to unlock digital freedom by giving you a simple, secure, and royally rewarding 🏆 path to income.
+<br><br>
+With just a one-time registration, you gain access to an elegant, user-friendly environment where every approved invite earns you <strong>KES 50 💸</strong>. No hidden hoops. No confusion. Just clarity, consistency, and crowns for your effort.
+<br><br>
+We believe in financial inclusion, transparency, and honoring every step of your journey. Our platform is crafted with fairness, security, and growth at its core — because your grind deserves more than numbers; it deserves recognition.
+<br><br>
+Welcome to a kingdom where hustle meets honor, and every invite brings someone closer to their breakthrough. This is <em>The Throne</em> — and your story of digital greatness begins here.
+</p>
+
+<blockquote style="font-style: italic; color: #ffee02; margin-top: 20px; border-left: 4px solid gold; padding-left: 15px;">
+    “A throne isn’t claimed by chance — it’s earned by choice, belief, and bold action. Every invite is a step closer to your crown.”
+</blockquote>
+
+
+            <h3>-Minimum Withdrawal:</h3>
+            <p>You must have at least Ksh 150 to withdraw.</p>
+
+
+            <h3>-A royal dispatch to you📜:</h3>
+            <p>Your Highness, this is your moment — you've tried hyped platforms, now choose one built on honor, belief, and legacy, where every invite is a brick in your kingdom, every hustle is rewarded, and every effort is seen, because at The Throne, your name isn’t just remembered — it’s being written in gold. 👑✨</p>
+        </section>
+
+        <section class="invite-link-box">
+            <h3>Your Unique Invite Link:</h3>
+            <input type="text" id="inviteLink" value="{{ invite_link }}" readonly>
+            <br>
+            <button onclick="copyLink()">Copy Link</button>
+            <br>
+            <span id="copyMessage">Link copied!</span>
+        </section>       
+    </div>
+</div>
+
+<script>
+    function copyLink() {
+        const linkInput = document.getElementById("inviteLink");
+        const copyMessage = document.getElementById("copyMessage");
+
+        linkInput.focus();
+        linkInput.select();
+        linkInput.setSelectionRange(0, 99999);
+
+        navigator.clipboard.writeText(linkInput.value).then(() => {
+            copyMessage.textContent = "Link copied!";
+            copyMessage.style.display = "inline";
+            setTimeout(() => {
+                copyMessage.style.display = "none";
+            }, 2000);
+        }).catch(err => {
+            try {
+                document.execCommand("copy");
+                copyMessage.textContent = "Link copied!";
+                copyMessage.style.display = "inline";
+                setTimeout(() => {
+                    copyMessage.style.display = "none";
+                }, 2000);
+            } catch (err) {
+                copyMessage.textContent = "Copy failed!";
+                copyMessage.style.display = "inline";
+                copyMessage.style.color = "red";
+            }
+        });
+    }
+</script>
+
+
+{% endblock %}

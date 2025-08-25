@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Throne</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --royal-purple: #3D2C8D;
+      --antique-gold: #C28840;
+      --pearl-white: #F9F6EF;
+      --dark-slate: #2F2F2F;
+      --card-glass: rgba(255, 255, 255, 0.06);
+      --border-glow: rgba(212, 175, 55, 0.3);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--royal-purple), var(--dark-slate));
+      backdrop-filter: blur(3px);
+      color: var(--pearl-white);
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 3em;
+      color: var(--antique-gold);
+    }
+
+    p {
+      color: var(--pearl-white);
+    }
+
+    .section {
+      background: rgba(0, 0, 0, 0.6);
+      margin: 30px auto;
+      padding: 25px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 850px;
+      border: 1px solid var(--border-glow);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+      transition: all 0.4s ease;
+    }
+
+
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(212, 175, 55, 0.2);
+    }
+
+    .section h2 {
+      color: var(--antique-gold);
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--antique-gold);
+      padding-bottom: 5px;
+    }
+
+    .section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .section ul li::before {
+      content: "🌟";
+      margin-right: 8px;
+    }
+
+    .btn-container {
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .btn-container button {
+      padding: 12px 25px;
+      margin: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      background: var(--royal-purple);
+      color: var(--pearl-white);
+      border: 2px solid var(--antique-gold);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .btn-container button:hover {
+      background: var(--antique-gold);
+      color: var(--dark-slate);
+      transform: scale(1.05);
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+    }
+
+    .testimonial-box {
+      background: rgba(0, 0, 0, 0.6);
+      text-align: center;
+      padding: 30px;
+      margin: 50px auto;
+      border-radius: 12px;
+      max-width: 750px;
+      border: 1px solid var(--border-glow);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+    }
+
+    .testimonial {
+      display: none;
+      font-style: italic;
+    }
+
+    .testimonial.active {
+      display: block;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .faq, .socials {
+      background: rgba(0, 0, 0, 0.6);
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 800px;
+      border: 1px solid var(--border-glow);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+    }
+
+    .faq h2, .socials h3 {
+      color: var(--antique-gold);
+    }
+
+    .socials i {
+      font-size: 24px;
+      margin-right: 10px;
+      color: var(--antique-gold);
+    }
+
+    .footer {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 14px;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>👑 WELCOME TO THE THRONE</h1>
+    <p>Earn your crown. Rule your Hustle</p>
+  </header>
+
+  <div class="section">
+    <h2>✨ Why The Throne?</h2>
+    <p>
+      Because kings and queens don’t chase — they build; that’s why at The Throne, you join a legit, government-recognized movement, plug into a secure and elegant dashboard, withdraw directly to M-Pesa on your terms, access 24/7 admin support—because loyalty deserves care—and with a one-time payment, you earn forever and grow endlessly.
+       "This isn’t hype. It’s history in the making".
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>🛠️ Features & How It Works</h2>
+    <p>
+      🔹 Fast signup & easy onboarding<br>
+      🔹 Pay once, refer endlessly 💰<br>
+      🔹 Earn KES 50 per approved invite!<br>
+      🔹 Withdraw via M-Pesa once verified ✅<br>
+      🔹 Admin reviews & support always available 💬<br>
+      🔹 Secure dashboard and real-time updates 🔒<br>
+      🔹 Unlock bonuses through milestones<br>
+      🔹 Rise in the ranks. Your crown awaits.<br>
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>🎯 Our Mission & Goals</h2>
+    <p>We don’t sell dreams. We create platforms for them to be fulfilled by:</p>
+    <ul>
+      <li>Empowering individuals through digital finance 💸</li>
+      <li>Inspire youth to build through connection, not corruption</li>
+      <li>Supporting local talent and innovation ✨</li>
+      <li>Offer a secure, transparent earning environment</li>
+      <li>Promoting financial literacy 💡</li>
+      <li>Turn passive effort into powerful results</li>
+      <li>Building a network of trust 🤝</li>
+      <li>Fostering inclusive economic growth 🌍</li>
+      <li>Delivering seamless digital experiences 💻</li>
+
+      <li>“💫Build a future where earning online is not a luxury — it’s a right”</li>
+    </ul>
+  </div>
+
+  <div class="btn-container">
+    <button onclick="window.location.href='/signup'">📝 Sign Up Now</button>
+    <button onclick="window.location.href='/login'">🔐 Already a Member? Log In</button>
+    <button onclick="window.location.href='/instructions'"> To secure your spot 🔒,follow the registration process 📝</button>
+  </div>
+
+  <div class="testimonial-box">
+    <h2>💬 What Our Users Say</h2>
+    <div class="testimonial active">“The Throne changed my life! Within days I saw real results!” – Mary K.</div>
+    <div class="testimonial">“I never thought a simple referral could change my mindset and wallet. The Throne isn't just an app — it’s a movement.” – Victor M.</div>
+    <div class="testimonial">“Easy to use and so rewarding. The best online platform I've used.” – Daniel O.</div>
+    <div class="testimonial">“I recommended it to all my friends, and we're making money together!” – Amina L.</div>
+    <div class="testimonial">“I invited five friends on Day One. By Day Three, I had cash in my M-Pesa. That’s The Throne difference.” – James K.</div>
+    <div class="testimonial">“From broke to earning daily — this platform gave me my power back.” – Layla D.</div>
+  </div>
+
+  <div class="faq">
+    <h2>❓ Frequently Asked Questions</h2>
+    <p><strong>How do I earn?</strong> Invite friends with your unique referral link. Every approved signup earns you KES 50.</p>
+    <p><strong>Is The Throne safe?</strong> Yes! Your data and transactions are handled securely.</p>
+    <p><strong>When do I get paid?</strong> Once your balance reaches the minimum withdrawal amount and admin approves it.</p>
+    <p><strong>Do I need to pay every time?</strong> No. Pay once, earn endlessly.</p>
+  </div>
+
+  <style>
+    .socials a {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 5px 0;
+        border-radius: 10px 30px 60px 120px;
+        text-decoration: none;
+        color: #F9F6EF; /* Pearl White */
+        background-color: #39356d; /* Dark Slate */
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .socials a:hover {
+        background-color: #C28840; /* Antique Gold */
+        color: #2F2F2F; /* Dark Slate text on gold hover */
+    }
+
+    .socials i {
+        margin-right: 8px;
+    }
+
+    .socials h3 {
+        color: #C28840; /* Antique Gold */
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="socials">
+    <h3>🌐 Connect With Us</h3>
+
+    <p>
+        <a href="https://www.instagram.com/thethro_ne" target="_blank">
+            <i class="fab fa-instagram" style="color:#E1306C;"></i> Instagram: <strong>@The Throne</strong>
+        </a>
+    </p>
+
+    <p>
+        <a href="https://www.facebook.com/share/1P92zXTZgQ/" target="_blank">
+            <i class="fab fa-facebook" style="color:#3b5998;"></i> Facebook: <strong>@The Throne</strong>
+        </a>
+    </p>
+
+    <p>
+        <a href="https://t.me/Thethro_ne" target="_blank">
+            <i class="fab fa-telegram" style="color:#0088cc;"></i> Telegram: <strong>@The Throne</strong>
+        </a>
+    </p>
+
+    <p>
+        <a href="https://twitter.com/Thethro_ne" target="_blank">
+            <i class="fab fa-x-twitter" style="color:#000000;"></i> X: <strong>@The Throne</strong>
+        </a>
+    </p>
+
+    <p>
+        <a href="https://whatsapp.com/channel/0029VbCfRJE2ZjCeRiolSm0n" target="_blank">
+            <i class="fab fa-whatsapp" style="color:#25D366;"></i> WhatsApp channel: <strong>@The Throne</strong>
+        </a>
+    </p>
+
+    <p>
+        <a href="mailto:thesuperiorthrone@gmail.com">
+            <i class="fas fa-envelope" style="color:#C28840;"></i> Contact Us: <strong>thesuperiorthrone@gmail.com</strong>
+        </a>
+    </p>
+</div>
+
+
+  <div class="footer">
+    &copy; {{ year }} The Throne. All Rights Reserved.
+  </div>
+
+  <script>
+    let i = 0;
+    const testimonials = document.querySelectorAll('.testimonial');
+    setInterval(() => {
+      testimonials[i].classList.remove('active');
+      i = (i + 1) % testimonials.length;
+      testimonials[i].classList.add('active');
+    }, 4000);
+  </script>
+</body>
+</html>

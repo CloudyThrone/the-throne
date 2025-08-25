@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% set body_class = "bg-float" %}
+
+{% block content %}
+<style>
+    h2 {
+        text-align: center;
+        color: #3D2C8D;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: center;
+        color: #2F2F2F;
+    }
+
+    th {
+        background-color: #3D2C8D;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f6ef;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .pending {
+        color: #C28840;
+        font-weight: bold;
+    }
+
+    .approved {
+        color: green;
+        font-weight: bold;
+    }
+
+    .denied {
+        color: red;
+        font-weight: bold;
+    }
+
+    .action-btn {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9em;
+        margin: 2px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .approve-btn {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .deny-btn {
+        background-color: #f44336;
+        color: white;
+    }
+
+    .action-btn:hover {
+        opacity: 0.9;
+    }
+</style>
+
+<h2>Pending User Signups</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for req in requests %}
+        <tr>
+            <td>{{ req.username }}</td>
+            <td>{{ req.email }}</td>
+            <td>{{ req.phone }}</td>
+            <td>{{ req.date }}</td>
+            <td>{{ req.time }}</td>
+            <td class="{{ req.status }}">{{ req.status|capitalize }}</td>
+            <td>
+                {% if req.status == 'pending' %}
+                    <a href="{{ url_for('approve_user', user_id=req.id) }}" class="action-btn approve-btn">✅ Approve</a>
+                    <a href="{{ url_for('deny_user', user_id=req.id) }}" class="action-btn deny-btn">❌ Deny</a>
+                {% else %}
+                    <em>No action</em>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
