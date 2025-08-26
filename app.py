@@ -154,7 +154,7 @@ def dashboard():
     db.session.commit()
 
     # Unique invite link
-    invite_link = f"https://thethrone.top/invite/{current_user.username}"
+    invite_link = f"{request.host_url}invite/{current_user.username}"
 
     return render_template('dashboard.html',
                            username=current_user.username,
