@@ -7,11 +7,8 @@ import os
 app = Flask(__name__)
 app.secret_key = 'G0D_super_001_key'
 
-# Setup DB path
-basedir = os.path.abspath(os.path.dirname(__file__))
-
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'instance', 'db.sqlite')
+# ✅ Use environment variable (set in Pxxl dashboard)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # ✅ Initialize the db with the app
@@ -20,6 +17,14 @@ db.init_app(app)
 # ✅ Create tables automatically (if they don't exist yet)
 with app.app_context():
     db.create_all()
+
+
+@app.cli.command("init-db")
+def init_db():
+    """Initialize the database (create all tables)."""
+    with app.app_context():
+        db.create_all()
+        print("✅ Database tables created!")
 
 # Home route
 @app.route('/')
